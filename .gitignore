@@ -1,0 +1,6 @@
+# Build
+cmake-build-*/
+build/
+
+# IDE
+.idea/
