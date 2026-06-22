@@ -3,24 +3,6 @@
 
 #include "grid.h"
 
-int matrixFuture[X][Y];
-
-void populate(int matrix[X][Y], enum Cell cell) {
-    for (int i = 0; i < X; i++) {
-        for (int j = 0; j < Y; j++) {
-            matrix[i][j] = cell;
-        }
-    }
-}
-
-void normalizePopulation(int matrix[X][Y]) {
-    for (int i = 0; i < X; i++) {
-        for (int j = 0; j < Y; j++) {
-            if (rand() % 2 == 0) matrix[i][j] = EMPTY;
-        }
-    }
-}
-
 #define C_EMPTY       "\033[38;5;236m"  // ciemny szary  - pusta ziemia
 #define C_TREE        "\033[38;5;34m"   // zielony       - drzewo
 #define C_NEW_TREE    "\033[38;5;46m"   // jasnozielony  - swieze drzewo
@@ -56,46 +38,52 @@ void display(int matrix[X][Y]) {
     }
 }
 
-void thunder(int matrix[X][Y]) {
-    int row = rand() % X;
-    int col = rand() % Y;
-    if (matrix[row][col] == TREE) matrix[row][col] = BURNING;
+void populate(int matrix[X][Y]) {
+    for (int i = 0; i < X; i++) {
+        for (int j = 0; j < Y; j++) {
+            if (rand() % 2 == 0) matrix[i][j] = TREE;
+            else matrix[i][j] = EMPTY;
+        }
+    }
 }
 
 void naturalEvents(int matrix[X][Y]) {
     float random;
     for (int i = 0; i < X; i++) {
         for (int j = 0; j < Y; j++) {
-            if (matrix[i][j] == EMPTY) {
-                random = (rand() % 1000 + 1) / 1000.0;
-                if (random <= p) matrix[i][j] = NEW_TREE;
+            switch (matrix[i][j]) {
+                case NEW_TREE:
+                    matrix[i][j] = TREE;
+                    break;
+                case NEW_BURNING:
+                    matrix[i][j] = BURNING;
+                    break;
             }
-            else if (matrix[i][j] == TREE) {
-                random = (rand() % 10000 + 1) / 10000.0;
-                if (random <= f) matrix[i][j] = NEW_BURNING;
+            switch (matrix[i][j]) {
+                case EMPTY:
+                    random = (rand() % 1000 + 1) / 1000.0;
+                    if (random <= p) matrix[i][j] = NEW_TREE;
+                    break;
+                case TREE:
+                    random = (rand() % 10000 + 1) / 10000.0;
+                    if (random <= f) matrix[i][j] = NEW_BURNING;
+                    break;
             }
-        }
-    }
-}
-
-void newNaturalEventsRecolour(int matrix[X][Y]) {
-    for (int i = 0; i < X; i++) {
-        for (int j = 0; j < Y; j++) {
-            if (matrix[i][j] == NEW_TREE) matrix[i][j] = TREE;
-            else if (matrix[i][j] == NEW_BURNING) matrix[i][j] = BURNING;
         }
     }
 }
 
 void burn(int matrix[X][Y]) {
+    int matrixFuture[X][Y];
+
     for (int i = 0; i < X; i++) {
         for (int j = 0; j < Y; j++) {
             if (matrix[i][j] == BURNING) {
                 matrix[i][j] = EMPTY;
-                if (i > 0 && matrix[i - 1][j] == TREE) matrixFuture[i - 1][j] = BURNING;
-                if (i < X - 1 && matrix[i + 1][j] == TREE) matrixFuture[i + 1][j] = BURNING;
-                if (j > 0 && matrix[i][j - 1] == TREE) matrixFuture[i][j - 1] = BURNING;
-                if (j < Y - 1 && matrix[i][j + 1] == TREE) matrixFuture[i][j + 1] = BURNING;
+                if (i > 0       && matrix[i - 1][j]     == TREE) matrixFuture[i - 1][j] = BURNING;
+                if (i < X - 1   && matrix[i + 1][j]     == TREE) matrixFuture[i + 1][j] = BURNING;
+                if (j > 0       && matrix[i][j - 1]     == TREE) matrixFuture[i][j - 1] = BURNING;
+                if (j < Y - 1   && matrix[i][j + 1]     == TREE) matrixFuture[i][j + 1] = BURNING;
             }
         }
     }

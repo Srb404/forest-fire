@@ -10,14 +10,12 @@ int main(void) {
 
     int matrix[X][Y];
 
-    populate(matrix, TREE);
-    normalizePopulation(matrix);
+    populate(matrix);
     display(matrix);
 
-    int steps = 250;
-    int time = 50000; // 0.05 s
+    const int steps = 10;
+    const int time = 500000; // 0.5 s
     for (int i = 0; i < steps + 1; i++) {
-        newNaturalEventsRecolour(matrix);
         burn(matrix);
         naturalEvents(matrix);
         display(matrix);

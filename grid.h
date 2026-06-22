@@ -1,8 +1,8 @@
 #ifndef GRID_H
 #define GRID_H
 
-#define X 40
-#define Y 74
+#define X 10
+#define Y 10
 #define p 0.01
 #define f 0.001
 
@@ -14,12 +14,9 @@ enum Cell {
     NEW_BURNING = 100
 };
 
-void populate(int matrix[X][Y], enum Cell cell);
-void normalizePopulation(int matrix[X][Y]);
+void populate(int matrix[X][Y]);
 void display(int matrix[X][Y]);
-void thunder(int matrix[X][Y]);
 void burn(int matrix[X][Y]);
 void naturalEvents(int matrix[X][Y]);
-void newNaturalEventsRecolour(int matrix[X][Y]);
 
 #endif
