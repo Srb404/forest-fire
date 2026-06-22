@@ -47,7 +47,7 @@ void populate(int matrix[X][Y]) {
     }
 }
 
-void naturalEvents(int matrix[X][Y]) {
+void events(int matrix[X][Y]) {
     float random;
     for (int i = 0; i < X; i++) {
         for (int j = 0; j < Y; j++) {
@@ -62,11 +62,11 @@ void naturalEvents(int matrix[X][Y]) {
             switch (matrix[i][j]) {
                 case EMPTY:
                     random = (rand() % 1000 + 1) / 1000.0;
-                    if (random <= p) matrix[i][j] = NEW_TREE;
+                    if (random <= TREE_CHANCE) matrix[i][j] = NEW_TREE;
                     break;
                 case TREE:
                     random = (rand() % 10000 + 1) / 10000.0;
-                    if (random <= f) matrix[i][j] = NEW_BURNING;
+                    if (random <= FIRE_CHANCE) matrix[i][j] = NEW_BURNING;
                     break;
             }
         }

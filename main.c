@@ -5,23 +5,20 @@
 
 #include "grid.h"
 
+int matrix[X][Y];
+
 int main(void) {
     srand(time(NULL));
-
-    int matrix[X][Y];
 
     populate(matrix);
     display(matrix);
 
-    const int steps = 10;
-    const int time = 500000; // 0.5 s
-    for (int i = 0; i < steps + 1; i++) {
+    for (int i = 0; i < STEPS + 1; i++) {
+        events(matrix);
         burn(matrix);
-        naturalEvents(matrix);
         display(matrix);
-        usleep(time);
+        usleep(TIME);
+        printf("Kroki: [%i/%i] \n", i, STEPS);
     }
-
-    printf("Wykonane kroki: [%i] \n", steps);
     return 0;
 }
