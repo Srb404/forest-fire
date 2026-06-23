@@ -3,7 +3,11 @@
 
 ## Forest Fire Simulation inspired by Drossel-Schwabl Forest Fire Model
 
-Program produces a simulation of a forest fire in the terminal window. It consists of 3 files:
+Code simulates a forest fire in a terminal window. It is based on model created in 1992 by Barbara Drossel and Frank Schwabl. Written in C for Linux operation systems.
+
+![Demo](media/forest-fire.gif)
+
+Program consists of 3 files:
 
 | File   | Description                            |
 |--------|----------------------------------------|
