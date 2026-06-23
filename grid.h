@@ -2,11 +2,11 @@
 #define GRID_H
 
 #define ROWS 30
-#define COLS 50
+#define COLS 35
 #define TREE_CHANCE 0.01
 #define FIRE_CHANCE 0.001
 #define STEPS 100
-#define TIME 500000
+#define TIME 50000
 
 enum Cell {
     EMPTY = 0,

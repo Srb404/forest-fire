@@ -17,7 +17,7 @@ int main(void) {
         events(matrix);
         burn(matrix);
         display(matrix);
-        printf("Kroki: [%i/%i] \n", i + 1, STEPS);
+        printf("Steps: [%i/%i] \n", i + 1, STEPS);
         usleep(TIME);
     }
     return 0;

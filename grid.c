@@ -3,11 +3,11 @@
 
 #include "grid.h"
 
-#define C_EMPTY       "\033[38;5;236m"  // ciemny szary  - pusta ziemia
-#define C_TREE        "\033[38;5;34m"   // zielony       - drzewo
-#define C_NEW_TREE    "\033[38;5;46m"   // jasnozielony  - swieze drzewo
-#define C_BURNING     "\033[38;5;202m"  // pomaranczowy  - ogien
-#define C_NEW_BURNING "\033[38;5;226m"  // zolty         - swiezo zapalone
+#define C_EMPTY       "\033[38;5;236m"
+#define C_TREE        "\033[38;5;34m"
+#define C_NEW_TREE    "\033[38;5;46m"
+#define C_BURNING     "\033[38;5;202m"
+#define C_NEW_BURNING "\033[38;5;226m"
 #define C_RESET       "\033[0m"
 
 void display(int matrix[ROWS][COLS]) {
