@@ -5,7 +5,7 @@
 
 #include "grid.h"
 
-int matrix[X][Y];
+int matrix[ROWS][COLS];
 
 int main(void) {
     srand(time(NULL));
@@ -13,12 +13,12 @@ int main(void) {
     populate(matrix);
     display(matrix);
 
-    for (int i = 0; i < STEPS + 1; i++) {
+    for (int i = 0; i < STEPS; i++) {
         events(matrix);
         burn(matrix);
         display(matrix);
+        printf("Kroki: [%i/%i] \n", i + 1, STEPS);
         usleep(TIME);
-        printf("Kroki: [%i/%i] \n", i, STEPS);
     }
     return 0;
 }
